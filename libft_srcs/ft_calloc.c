@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 14:45:44 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/06/02 15:19:24 by htomas-d         ###   ########.fr       */
+/*   Created: 2022/04/06 13:33:23 by htomas-d          #+#    #+#             */
+/*   Updated: 2022/04/06 13:33:26 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char **argv)
+#include"ft_printf.h"
+
+void	*ft_calloc(size_t count, size_t size)
 {
-	
+	void	*ptr;
+
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }
