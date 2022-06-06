@@ -12,11 +12,30 @@
 
 #include "ft_printf.h"
 #include <unistd.h>
+#include <signal.h>
+
+int	g = 0;
+
+void	get_string(int signal)
+{
+	char str[9];
+	
+	if (signal == 30)
+		str[g++] = '0';
+	else if (signal == 31)
+		str[g++] = '1';
+	if (g == 8)
+	{
+		str[g] = '\0';
+		g = 0;
+	}
+}
 
 int main()
 {
-	ft_printf("PID: %d\n", getpid());
-	signal(SIGUSR1, ola
+	ft_printf("\e[0;32mSERVER PID: %d\n", getpid());
+	signal(SIGUSR1, get_string);
+	signal(SIGUSR2, get_string);
 	while(1)
 		;
 }
