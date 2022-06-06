@@ -12,7 +12,7 @@
 
 SERVER_SRCS		=	server.c 
 
-CLIENT_SRCS		=	client.c ft_atoi.c
+CLIENT_SRCS		=	client.c  
 
 LIBFT_SRCS   =  ft_printf.c ft_bzero.c get_next_line_utils_bonus.c get_next_line_bonus.c \
 				ft_calloc.c ft_itoa.c ft_memset.c ft_putchar.c ft_putex.c ft_putexup.c \

@@ -16,9 +16,36 @@
 
 int	g = 0;
 
+int	ft_recursive_power(int nb, int power)
+{
+	if (power < 0)
+		return 0;
+	else if (power == 0)
+		return 1;
+	else
+		return (nb * ft_recursive_power(power, power - 1));
+}
+
+int	backtoint(char	*str)
+{
+	int	a;
+	int	result;
+
+	a = 7;
+	result = 0;
+	while(a >= 0)
+	{
+		if (str[a] == '1')
+			result += 1 * ft_recursive_power(2, (7 - a));
+		a--;
+	}
+	return (result);
+}
+
 void	get_string(int signal)
 {
-	char str[9];
+	char	str[9];
+	int	strdone;
 	
 	if (signal == 30)
 		str[g++] = '0';
@@ -27,6 +54,13 @@ void	get_string(int signal)
 	if (g == 8)
 	{
 		str[g] = '\0';
+		if(str[0] == '1')
+		{
+			g = write(1, "\n", 1) - 1;
+			return;
+		}
+		strdone = backtoint(str);
+		ft_printf("%c", strdone);
 		g = 0;
 	}
 }

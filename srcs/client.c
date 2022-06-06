@@ -12,10 +12,29 @@
 
 #include "ft_printf.h"
 #include <unistd.h>
+#include <signal.h>
+
+int	*invert(int c)
+{
+	int	*array;
+	int	i;
+
+	i = 7;
+	array = malloc(sizeof(int) * 8);
+	while((c) != 0)
+	{
+		array[i] = c % 2;
+		c /= 2;
+		i--;
+	}
+	while(i > 0)
+		array[i--] = 0;
+	return (array);
+}
 
 int	ft_isprint(int c)
 {
-	return (c >= 32 && c <= 126)
+	return (c >= 32 && c <= 126);
 }
 
 void	sendsignal(int *array, int pid)
@@ -25,17 +44,46 @@ void	sendsignal(int *array, int pid)
 	i = 0;
 	while (i < 8)
 	{
-		if (array[i] = 0)
+		if (array[i] == 0)
 		{
 			kill(pid, SIGUSR1);
+			usleep(100);
 		}
-		else if (array[i] = 1)
+		else if (array[i] == 1)
 		{
 			kill(pid, SIGUSR2);
+			usleep(100);
 		}
 		i++;
 	}
 	free(array);
+}
+
+int ft_atoi(const char *str)
+{
+	int	i;
+	int	minuscount;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	minuscount = 1;
+	while (str[i] == '\t' || str[i] == '\v' || str[i] == '\n'
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+			i++;
+	if (str[i] == '-')
+	{
+		minuscount = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10) + (str[i] -'0');
+		i++;
+	}
+	return (nb * minuscount);
 }
 
 int main(int argc, char **argv)
@@ -56,6 +104,13 @@ int main(int argc, char **argv)
 	while (argv[2][i] != '\0')
 	{
 		input = ft_isprint((int) (argv[2][i]));
-
+		sendsignal(invert(input), pid);
+		i++;
+	}
+	i = 0;
+	while(i++ < 8)
+	{
+		kill(pid, SIGUSR2);
+		usleep(100);
 	}
 }
