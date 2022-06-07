@@ -47,21 +47,22 @@ int	backtoint(unsigned char	*str)
 
 void	get_string(int signal)
 {
-	char	str[9];
+	unsigned char	str[9];
 	int	strdone;
-	
+
 	if (signal == 30)
 		str[g++] = '0';
 	else if (signal == 31)
 		str[g++] = '1';
 	if (g == 8)
-	{
+	{	
 		str[g] = '\0';
 		if(str[0] == '1')
 		{
 			g = write(1, "\n", 1) - 1;
 			return;
 		}
+//		printf("%s", str);
 		strdone = backtoint(str);
 		ft_printf("%c", strdone);
 		g = 0;
