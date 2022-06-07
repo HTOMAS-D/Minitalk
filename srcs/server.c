@@ -13,6 +13,9 @@
 #include "ft_printf.h"
 #include <unistd.h>
 #include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 
 int	g = 0;
 
@@ -26,7 +29,7 @@ int	ft_recursive_power(int nb, int power)
 		return (nb * ft_recursive_power(power, power - 1));
 }
 
-int	backtoint(char	*str)
+int	backtoint(unsigned char	*str)
 {
 	int	a;
 	int	result;
@@ -65,7 +68,7 @@ void	get_string(int signal)
 	}
 }
 
-int main()
+int main(void)
 {
 	ft_printf("\e[0;32mSERVER PID: %d\n", getpid());
 	signal(SIGUSR1, get_string);
