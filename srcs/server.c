@@ -6,7 +6,7 @@
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:52 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/06/02 15:19:21 by htomas-d         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:36:43 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-int	g = 0;
+int	g_i = 0;
 
 int	ft_recursive_power(int nb, int power)
 {
 	if (power < 0)
-		return 0;
+		return (0);
 	else if (power == 0)
-		return 1;
+		return (1);
 	else
-		return (nb * ft_recursive_power(power, power - 1));
+		return (nb * ft_recursive_power(nb, power - 1));
 }
 
 int	backtoint(unsigned char	*str)
@@ -36,7 +35,7 @@ int	backtoint(unsigned char	*str)
 
 	a = 7;
 	result = 0;
-	while(a >= 0)
+	while (a >= 0)
 	{
 		if (str[a] == '1')
 			result += 1 * ft_recursive_power(2, (7 - a));
@@ -48,32 +47,31 @@ int	backtoint(unsigned char	*str)
 void	get_string(int signal)
 {
 	unsigned char	str[9];
-	int	strdone;
+	int				strdone;
 
 	if (signal == 30)
-		str[g++] = '0';
+		str[g_i++] = '0';
 	else if (signal == 31)
-		str[g++] = '1';
-	if (g == 8)
+		str[g_i++] = '1';
+	if (g_i == 8)
 	{	
-		str[g] = '\0';
-		if(str[0] == '1')
+		str[g_i] = '\0';
+		if (str[0] == '1')
 		{
-			g = write(1, "\n", 1) - 1;
-			return;
+			g_i = write(1, "\n", 1) - 1;
+			return ;
 		}
-//		printf("%s", str);
 		strdone = backtoint(str);
 		ft_printf("%c", strdone);
-		g = 0;
+		g_i = 0;
 	}
 }
 
-int main(void)
+int	main(void)
 {
 	ft_printf("\e[0;32mSERVER PID: %d\n", getpid());
 	signal(SIGUSR1, get_string);
 	signal(SIGUSR2, get_string);
-	while(1)
+	while (1)
 		;
 }

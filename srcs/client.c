@@ -6,7 +6,7 @@
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:44 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/06/02 15:19:24 by htomas-d         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:32:00 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,27 @@ int	*invert(int c)
 
 	i = 7;
 	array = malloc(sizeof(int) * 8);
-	while((c) != 0)
+	while ((c) != 0)
 	{
 		array[i] = c % 2;
 		c /= 2;
 		i--;
 	}
-	while(i >= 0)
+	while (i >= 0)
 		array[i--] = 0;
 	return (array);
 }
 
 int	ft_isprint(int c)
 {
-	return (c >= 32 && c <= 126);
+	if (c >= 32 && c <= 126)
+		return (c);
+	return (0);
 }
 
 void	sendsignal(int *array, int pid)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 8)
@@ -61,7 +63,7 @@ void	sendsignal(int *array, int pid)
 	free(array);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	minuscount;
@@ -87,17 +89,17 @@ int ft_atoi(const char *str)
 	return (nb * minuscount);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int	pid;
 	int	i;
 	int	input;
 
-	if(argc != 3)
+	if (argc != 3)
 	{
 		ft_printf("\e[0;31mWRONG NUMBER OF ARGUMENTS:\n");
 		ft_printf("\e[0;32m./client [SERVER PID] [STRING]\n");
-		return 0;
+		return (0);
 	}
 	pid = ft_atoi(argv[1]);
 	i = 0;
@@ -108,7 +110,7 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	while(i++ < 8)
+	while (i++ < 8)
 	{
 		kill(pid, SIGUSR2);
 		usleep(100);

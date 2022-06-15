@@ -6,7 +6,7 @@
 #    By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/02 14:20:13 by htomas-d          #+#    #+#              #
-#    Updated: 2022/06/02 15:08:11 by htomas-d         ###   ########.fr        #
+#    Updated: 2022/06/15 13:26:42 by htomas-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ SERVER_SRCS		=	server.c
 
 CLIENT_SRCS		=	client.c  
 
-LIBFT_SRCS   =  ft_printf.c ft_bzero.c get_next_line_utils_bonus.c get_next_line_bonus.c \
-				ft_calloc.c ft_itoa.c ft_memset.c ft_putchar.c ft_putex.c ft_putexup.c \
-				ft_putptr.c ft_putsigned.c ft_putstr.c ft_putunsigned.c ft_uitoa.c
+LIBFT_SRCS   =  ft_printf.c ft_bzero.c ft_calloc.c ft_itoa.c ft_memset.c ft_putchar.c \
+				ft_putex.c ft_putexup.c ft_putptr.c ft_putsigned.c ft_putstr.c ft_uitoa.c \
+				ft_putunsigned.c ft_strlen.c
 
 SERVER_OBJS   =  $(addprefix objs/,$(SERVER_SRCS:.c=.o))
 
@@ -33,6 +33,7 @@ SERVER		= server
 CLIENT		= client
 
 objs/%.o: srcs/%.c
+			@mkdir -p objs/
 			$(CC) $(CFLAGS) -c $< -o $@
 
 objs/%.o: libft_srcs/%.c
@@ -45,6 +46,7 @@ $(SERVER):	$(SERVER_OBJS) $(LIBFT_OBJS)
 			$(CC) -o $(SERVER) $(SERVER_OBJS) $(LIBFT_OBJS)
 			@echo "\033[106m                       \033[0m"
 			@echo "$(GREEN)Successfully Built Server$(DEFAULT)"
+			@echo "\033[106m                       \033[0m"
 
 $(CLIENT):	$(CLIENT_OBJS) $(LIBFT_OBJS)
 			$(CC) -o $(CLIENT) $(CLIENT_OBJS) $(LIBFT_OBJS)
@@ -60,6 +62,8 @@ fclean:		clean
 			@echo "$(RED)Files Removed$(DEFAULT)"
 
 re:			fclean all
+
+.PHONY:		all clean fclean re
 
 #COLORS
 RED = \033[1;31m

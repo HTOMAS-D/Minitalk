@@ -6,7 +6,7 @@
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 11:59:49 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/04/08 10:36:54 by htomas-d         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:32:50 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_putsigned(t_print *tab);
 void	ft_putunsigned(t_print *tab);
 char	*ft_itoa(int c);
 char	*ft_utoa(long c);
-size_t		ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
