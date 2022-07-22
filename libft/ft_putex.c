@@ -6,7 +6,7 @@
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 09:29:56 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/04/08 10:29:40 by htomas-d         ###   ########.fr       */
+/*   Updated: 2022/07/22 14:21:08 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,9 @@ void	ft_putex(t_print *tab)
 	i = 0;
 	n = va_arg(tab->args, int);
 	temp = n;
-	if (n < 0)
-	{
-		tab->lentot += write(1, "-", 1);
-		n *= (-1);
-		i++;
-	}
 	i = ft_newstrlen(temp);
 	a = (char *)ft_calloc(i + 1, sizeof(char *));
-	while (n >= 0 && i >= 0)
+	while (n > 0 && i >= 0)
 	{
 		a[i--] = "0123456789abcdef" [n % 16];
 		n /= 16;

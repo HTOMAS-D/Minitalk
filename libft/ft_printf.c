@@ -66,8 +66,14 @@ int	ft_printf(const char *str, ...)
 	free(tab);
 	return (ret);
 }
-//int main()
-//{
-//	ft_printf("\n\e[0;31mWRONG NUMBER OF ARGUMENTS!\n\n");
-//	return 0;
-//}
+/*int main()
+{
+	char h[]= "henrique";
+	int i;
+	unsigned int u;
+
+	u = 2147483650;
+	i = 12345;
+	ft_printf("%x %pola %%o meu%c nome é %s%u\n%d", 7 , 0 ,"u" , h , u, 18);
+	return 0;
+}*/

@@ -6,11 +6,11 @@
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:52 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/06/15 12:36:43 by htomas-d         ###   ########.fr       */
+/*   Updated: 2022/07/22 14:10:03 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft/ft_printf.h"
 #include <unistd.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -49,9 +49,9 @@ void	get_string(int signal)
 	unsigned char	str[9];
 	int				strdone;
 
-	if (signal == 30)
+	if (signal == 10)
 		str[g_i++] = '0';
-	else if (signal == 31)
+	else if (signal == 12)
 		str[g_i++] = '1';
 	if (g_i == 8)
 	{	

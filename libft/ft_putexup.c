@@ -1,56 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_putexup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 12:01:34 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/04/08 10:41:45 by htomas-d         ###   ########.fr       */
+/*   Created: 2022/04/08 09:52:21 by htomas-d          #+#    #+#             */
+/*   Updated: 2022/07/22 14:21:34 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <unistd.h>
 
-static int	newstrlen(unsigned int c)
+static int	ft_newstrlen(unsigned int temp)
 {
 	int	i;
 
 	i = 0;
-	if (c == 0)
-		return (1);
-	while (c > 0)
-	{	
-		c /= 10;
+	while (temp > 15)
+	{
+		temp /= 16;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_utoa(long c)
+void	ft_putexup(t_print *tab)
 {
-	char			*res;
-	long			i;
-	unsigned int	num;
+	unsigned int	n;
+	char			*a;
+	int				i;
+	unsigned int	temp;
 
-	num = c;
-	i = newstrlen(num);
-	res = (char *)malloc(sizeof(char) * i + 1);
-	if (!res)
-		return (NULL);
-	if (num < 0)
+	i = 0;
+	n = va_arg(tab->args, int);
+	temp = n;
+	i = ft_newstrlen(temp);
+	a = (char *)ft_calloc(i + 1, sizeof(char *));
+	while (n > 0 && i >= 0)
 	{
-		res[0] = '-';
-		num *= -1;
+		a[i--] = "0123456789ABCDEF"[n % 16];
+		n /= 16;
 	}
-	else if (num == 0)
-		res[0] = '0';
-	res[i] = '\0';
-	while (num > 0)
-	{
-		res[i - 1] = num % 10 + '0';
-		num /= 10;
-		i--;
-	}
-	return (res);
+	tab->lentot += write(1, a, ft_strlen(a));
+	free(a);
 }

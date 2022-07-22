@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: htomas-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 12:53:50 by htomas-d          #+#    #+#             */
-/*   Updated: 2022/06/15 13:00:50 by htomas-d         ###   ########.fr       */
+/*   Created: 2022/04/06 12:07:27 by htomas-d          #+#    #+#             */
+/*   Updated: 2022/04/08 10:20:03 by htomas-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		i++;
 	}
