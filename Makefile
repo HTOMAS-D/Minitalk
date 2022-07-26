@@ -16,7 +16,7 @@ CLIENT_SRCS		=	srcs/client.c
 
 LIBFT		= -Llibft -lft
 
-LIBFTA		= ./libft/libftprintf.a
+LIBFTA		= ./libft/libft.a
 
 LIBFT_PATH	= ./libft
 
