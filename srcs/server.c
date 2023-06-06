@@ -49,9 +49,9 @@ void	get_string(int signal)
 	unsigned char	str[9];
 	int				strdone;
 
-	if (signal == 10)
+	if (signal == 30) // 10 for linux
 		str[g_i++] = '0';
-	else if (signal == 12)
+	else if (signal == 31) // 12 for linux
 		str[g_i++] = '1';
 	if (g_i == 8)
 	{	
